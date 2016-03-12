@@ -39,6 +39,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'../client/public')));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //route
 app.use('/',route);
@@ -49,16 +51,15 @@ app.use(session({
   resave : true,
   saveUninitialized : false
 }));
-app.use(passport.initialize());
-app.use(passport.session());
-// error handling and send 404 error
-app.use(function(err,req,res,next)
-{
-  var err= new Error('you are landed on wrong page');
-  err.status = 404;
-  next(err);
 
-});
+// error handling and send 404 error
+// app.use(function(err,req,res,next)
+// {
+//   var err= new Error('you are landed on wrong page');
+//   err.status = 404;
+//   next(err);
+
+// });
 
 // general error
 

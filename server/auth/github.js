@@ -14,27 +14,29 @@ passport.use(new GitHubStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
 
-    var searchQuery = {
-      name: profile.displayName
-    };
 
-    var updates = {
-      name: profile.displayName,
-      someID: profile.id
-    };
+      return done(null, profile);
+    // var searchQuery = {
+    //   name: profile.displayName 
+    // };
 
-    var options = {
-      upsert: true
-    };
+    // var updates = {
+    //   name: profile.displayName,
+    //   someID: profile.id
+    // };
 
-    // update the user if s/he exists or add a new user
-    User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
-      if(err) {
-        return done(err);
-      } else {
-        return done(null, user);
-      }
-    });
+    // var options = {
+    //   upsert: true
+    // };
+
+    // // update the user if s/he exists or add a new user
+    // User.findOneAndUpdate(searchQuery, updates, options, function(err, user) {
+    //   if(err) {
+    //     return done(err);
+    //   } else {
+    //     return done(null, user);
+    //   }
+    // });
   }
 
 ));
